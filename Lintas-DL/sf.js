@@ -86,9 +86,6 @@ var EncryptionLink = EncryptionLink || function(u, e) {
                 mixIn: function(e) {
                     for (var t in e) e.hasOwnProperty(t) && (this[t] = e[t]);
                     e.hasOwnProperty("toString") && (this.toString = e.toString)
-                },
-                clone: function() {
-                    return this.init.prototype.extend(this)
                 }
             }
         }(),
@@ -117,10 +114,6 @@ var EncryptionLink = EncryptionLink || function(u, e) {
                 var e = this.words,
                     t = this.sigBytes;
                 e[t >>> 2] &= 4294967295 << 32 - t % 4 * 8, e.length = u.ceil(t / 4)
-            },
-            clone: function() {
-                var e = n.clone.call(this);
-                return e.words = this.words.slice(0), e
             },
             random: function(e) {
                 for (var t = [], r = 0; r < e; r += 4) t.push(4294967296 * u.random() | 0);
@@ -187,10 +180,6 @@ var EncryptionLink = EncryptionLink || function(u, e) {
                     t.sigBytes -= s
                 }
                 return new h.init(f, s)
-            },
-            clone: function() {
-                var e = n.clone.call(this);
-                return e._data = this._data.clone(), e
             },
             _minBufferSize: 0
         }),
@@ -332,10 +321,6 @@ function(u) {
                 s[a] = 16711935 & (f << 8 | f >>> 24) | 4278255360 & (f << 24 | f >>> 8)
             }
             return c
-        },
-        clone: function() {
-            var e = n.clone.call(this);
-            return e._hash = this._hash.clone(), e
         }
     });
     e.MD5 = n._createHelper(o), e.HmacMD5 = n._createHmacHelper(o)
